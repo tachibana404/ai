@@ -2,6 +2,7 @@ import autobind from 'autobind-decorator';
 import Module from '@/module';
 import Friend from '@/friend';
 import serifs from '@/serifs';
+import config from '@/config';
 
 export default class extends Module {
 	public readonly name = 'valentine';
@@ -43,7 +44,12 @@ export default class extends Module {
 
 			const text = serifs.valentine.chocolateForYou(friend.name);
 
+			let visibility = config.defaultVisibility;
+			let localOnly = config.defaultlocalOnly;
+
 			this.ai.sendMessage(friend.userId, {
+				visibility: visibility,
+				localOnly: localOnly,
 				text: text
 			});
 		});

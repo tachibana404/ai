@@ -4,6 +4,13 @@
 ## これなに
 Misskey用の日本語Botです。
 
+## オリジナルとの変更点
+- 名前の変更
+- セリフを追加したり削除したり
+- フォロー返しはローカルのみ
+- 投稿の公開範囲の指定、ローカルのみにするかどうかを設定できるようにした
+- 投票、迷路を無効にすることができるようにした
+
 ## インストール
 > Node.js と npm と MeCab (オプション) がインストールされている必要があります。
 
@@ -14,16 +21,23 @@ Misskey用の日本語Botです。
 	"host": "https:// + あなたのインスタンスのURL (末尾の / は除く)",
 	"i": "藍として動かしたいアカウントのアクセストークン",
 	"master": "管理者のユーザー名(オプション)",
+	"defaultVisibility": "投稿の公開範囲 (public, followers, home)",
+	"defaultlocalOnly": "ローカルのみの投稿にしたい場合は true を入れる （無効にする場合は true）",
 	"notingEnabled": "ランダムにノートを投稿する機能を無効にする場合は false を入れる",
 	"keywordEnabled": "キーワードを覚える機能 (MeCab が必要) を有効にする場合は true を入れる (無効にする場合は false)",
 	"chartEnabled": "チャート機能を無効化する場合は false を入れてください",
 	"reversiEnabled": "藍とリバーシで対局できる機能を有効にする場合は true を入れる (無効にする場合は false)",
+	"welcomeEnabled": "初めて投稿を行うとお知らせしてくれる機能を有効にする場合は true を入れる（無効にする場合は false）",
+	"pollEnabled": "投票を自動で投稿する機能を有効にする場合は true を入れる（無効にする場合は false）",
+	"mazeAutoPostEnabled": "迷路を自動で投稿する機能を有効にする場合は true を入れる（無効にする場合は false）",
+	"versionCheckAutoPostEnabled": "バージョンアップ通知を有効にする場合は true を入れる（無効にする場合は false）",
 	"serverMonitoring": "サーバー監視の機能を有効にする場合は true を入れる (無効にする場合は false)",
 	"mecab": "MeCab のインストールパス (ソースからインストールした場合、大体は /usr/local/bin/mecab)",
 	"mecabDic": "MeCab の辞書ファイルパス (オプション)",
 	"memoryDir": "memory.jsonの保存先（オプション、デフォルトは'.'（レポジトリのルートです））"
 }
 ```
+
 `npm install` して `npm run build` して `npm start` すれば起動できます
 
 ## Dockerで動かす
@@ -35,10 +49,16 @@ Misskey用の日本語Botです。
 	"host": "https:// + あなたのインスタンスのURL (末尾の / は除く)",
 	"i": "藍として動かしたいアカウントのアクセストークン",
 	"master": "管理者のユーザー名(オプション)",
+	"defaultVisibility": "投稿の公開範囲 (public, followers, home)",
+	"defaultlocalOnly": "ローカルのみの投稿にしたい場合は true を入れる （無効にする場合は true）",
 	"notingEnabled": "ランダムにノートを投稿する機能を無効にする場合は false を入れる",
 	"keywordEnabled": "キーワードを覚える機能 (MeCab が必要) を有効にする場合は true を入れる (無効にする場合は false)",
 	"chartEnabled": "チャート機能を無効化する場合は false を入れてください",
 	"reversiEnabled": "藍とリバーシで対局できる機能を有効にする場合は true を入れる (無効にする場合は false)",
+	"welcomeEnabled": "初めて投稿を行うとお知らせしてくれる機能を有効にする場合は true を入れる（無効にする場合は false）",
+	"pollEnabled": "投票を自動で投稿する機能を有効にする場合は true を入れる（無効にする場合は false）",
+	"mazeAutoPostEnabled": "迷路を自動で投稿する機能を有効にする場合は true を入れる（無効にする場合は false）",
+	"versionCheckAutoPostEnabled": "バージョンアップ通知を有効にする場合は true を入れる（無効にする場合は false）",
 	"serverMonitoring": "サーバー監視の機能を有効にする場合は true を入れる (無効にする場合は false)",
 	"mecab": "/usr/bin/mecab",
 	"mecabDic": "/usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd/",

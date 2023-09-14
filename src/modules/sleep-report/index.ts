@@ -1,6 +1,7 @@
 import autobind from 'autobind-decorator';
 import Module from '@/module';
 import serifs from '@/serifs';
+import config from '@/config';
 
 export default class extends Module {
 	public readonly name = 'sleepReport';
@@ -22,12 +23,20 @@ export default class extends Module {
 
 		if (sleepHours < 0.1) return;
 
+		let visibility = config.defaultVisibility;
+		let localOnly = config.defaultlocalOnly;
+		if (!visibility) visibility = 'public';
+
 		if (sleepHours >= 1) {
 			this.ai.post({
+				visibility: visibility,
+				localOnly: localOnly,
 				text: serifs.sleepReport.report(Math.round(sleepHours))
 			});
 		} else {
 			this.ai.post({
+				visibility: visibility,
+				localOnly: localOnly,
 				text: serifs.sleepReport.reportUtatane
 			});
 		}

@@ -22,6 +22,8 @@ export default class extends Module {
 
 	@autobind
 	private post() {
+		let visibility = config.defaultVisibility;
+		let localOnly = config.defaultlocalOnly;
 		const notes = [
 			...serifs.noting.notes,
 			() => {
@@ -43,6 +45,8 @@ export default class extends Module {
 		// TODO: 季節に応じたセリフ
 
 		this.ai.post({
+			visibility: visibility,
+			localOnly: localOnly,
 			text: typeof note === 'function' ? note() : note
 		});
 	}

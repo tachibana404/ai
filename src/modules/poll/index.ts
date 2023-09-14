@@ -11,6 +11,7 @@ export default class extends Module {
 
 	@autobind
 	public install() {
+		if(!config.pollEnabled) return {};
 		setInterval(() => {
 			if (Math.random() < 0.1) {
 				this.post();
@@ -73,7 +74,13 @@ export default class extends Module {
 			genItem(),
 		];
 
+		let visibility = config.defaultVisibility;
+		let localOnly = config.defaultlocalOnly;
+
+		if (!visibility) visibility = 'public';
 		const note = await this.ai.post({
+			visibility: visibility,
+			localOnly: localOnly,
 			text: poll[1],
 			poll: {
 				choices,
@@ -120,6 +127,9 @@ export default class extends Module {
 				mostVotedChoice = choice;
 			}
 		}
+
+		let visibility = config.defaultVisibility;
+		if (!visibility) visibility = 'public';
 
 		const mostVotedChoices = choices.filter(choice => choice.votes === mostVotedChoice.votes);
 

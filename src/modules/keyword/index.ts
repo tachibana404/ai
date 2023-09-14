@@ -74,7 +74,12 @@ export default class extends Module {
 			text = serifs.keyword.learned(keyword[0], kanaToHira(keyword[8]));
 		}
 
+		let visibility = config.defaultVisibility;
+		let localOnly = config.defaultlocalOnly;
+
 		this.ai.post({
+			visibility: visibility,
+			localOnly: localOnly,
 			text: text
 		});
 	}
