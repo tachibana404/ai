@@ -72,7 +72,6 @@ export default class extends Module {
 
 		let visibility = config.defaultVisibility;
 		let localOnly = config.defaultlocalOnly;
-
 		if (!visibility) visibility = 'public';
 
 		this.ai.post({

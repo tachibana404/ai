@@ -76,8 +76,8 @@ export default class extends Module {
 
 		let visibility = config.defaultVisibility;
 		let localOnly = config.defaultlocalOnly;
-
 		if (!visibility) visibility = 'public';
+
 		const note = await this.ai.post({
 			visibility: visibility,
 			localOnly: localOnly,
@@ -129,18 +129,23 @@ export default class extends Module {
 		}
 
 		let visibility = config.defaultVisibility;
+		let localOnly = config.defaultlocalOnly;
 		if (!visibility) visibility = 'public';
 
 		const mostVotedChoices = choices.filter(choice => choice.votes === mostVotedChoice.votes);
 
 		if (mostVotedChoice.votes === 0) {
 			this.ai.post({ // TODO: Extract serif
+				visibility: visibility,
+				localOnly: localOnly,
 				text: '投票はありませんでした',
 				renoteId: noteId,
 			});
 		} else if (mostVotedChoices.length === 1) {
 			this.ai.post({ // TODO: Extract serif
 				cw: `${title}アンケートの結果発表です！`,
+				visibility: visibility,
+				localOnly: localOnly,
 				text: `結果は${mostVotedChoice.votes}票の「${mostVotedChoice.text}」でした！`,
 				renoteId: noteId,
 			});
@@ -148,6 +153,8 @@ export default class extends Module {
 			const choices = mostVotedChoices.map(choice => `「${choice.text}」`).join('と');
 			this.ai.post({ // TODO: Extract serif
 				cw: `${title}アンケートの結果発表です！`,
+				visibility: visibility,
+				localOnly: localOnly,
 				text: `結果は${mostVotedChoice.votes}票の${choices}でした！`,
 				renoteId: noteId,
 			});

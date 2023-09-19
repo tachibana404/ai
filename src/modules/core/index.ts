@@ -62,11 +62,11 @@ export default class extends Module {
 
 	@autobind
 	private setName(msg: Message): boolean  {
-		if (!msg.text) return false;
-		if (!msg.text.includes('って呼んで')) return false;
-		if (msg.text.startsWith('って呼んで')) return false;
+		if (!msg.extractedText) return false;
+		if (!msg.extractedText.includes('って呼んで')) return false;
+		if (msg.extractedText.startsWith('って呼んで')) return false;
 
-		const name = msg.text.match(/^(.+?)って呼んで/)![1];
+		const name = msg.extractedText.match(/^(.+?)って呼んで/)![1];
 
 		if (name.length > 10) {
 			msg.reply(serifs.core.tooLong);

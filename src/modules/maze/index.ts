@@ -15,7 +15,6 @@ export default class extends Module {
 			this.post();
 			setInterval(this.post, 1000 * 60 * 3);
 		}
-
 		return {
 			mentionHook: this.mentionHook
 		};

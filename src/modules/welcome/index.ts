@@ -7,8 +7,6 @@ export default class extends Module {
 
 	@autobind
 	public install() {
-		if(!config.welcomeEnabled) return {};
-
 		const tl = this.ai.connection.useSharedConnection('localTimeline');
 
 		tl.on('note', this.onLocalNote);
@@ -18,17 +16,14 @@ export default class extends Module {
 
 	@autobind
 	private onLocalNote(note: any) {
-
 		let visibility = config.defaultVisibility;
 		let localOnly = config.defaultlocalOnly;
 		if (!visibility) visibility = 'public';
-
 		if (note.isFirstNote) {
 			setTimeout(() => {
 				this.ai.api('notes/create', {
 					visibility: visibility,
 					localOnly: localOnly,
-					text: '新規さんを見つけました！',
 					renoteId: note.id
 				});
 			}, 3000);

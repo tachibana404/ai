@@ -10,11 +10,9 @@ type Config = {
 	reversiEnabled: boolean;
 	notingEnabled: boolean;
 	chartEnabled: boolean;
-	welcomeEnabled: boolean;
-	pollEnabled: boolean;
 	serverMonitoring: boolean;
+	pollEnabled: boolean;
 	mazeAutoPostEnabled: boolean;
-	versionCheckAutoPostEnabled: boolean;
 	mecab?: string;
 	mecabDic?: string;
 	memoryDir?: string;
